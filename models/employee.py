@@ -4,6 +4,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .base import Base
 from .favorite import Favorite
 from .post import Post
+from .role import Role
 
 
 class Employee(Base):
@@ -17,7 +18,10 @@ class Employee(Base):
     profile_picture: Mapped[str] = mapped_column()
     birthday: Mapped[Date] = mapped_column()
     phone_number: Mapped[str] = mapped_column()
+    role_id: Mapped[int] = mapped_column(ForeignKey("role.id"))
+
 
     favorites: Mapped[list[Favorite]] = relationship(back_populates='employee')
     post: Mapped[list[Post]] = relationship(back_populates='author')
+    role: Mapped[Role] = relationship(back_populates='employees')
     pass
