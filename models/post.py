@@ -1,6 +1,8 @@
+from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
+from .employee import Employee
 from .favorite import Favorite
 from .post_tag import PostTag
 
@@ -11,7 +13,9 @@ class Post(Base):
     title: Mapped[str] = mapped_column(nullable=False)
     content: Mapped[str] = mapped_column(nullable=False)
     img_url: Mapped[str] = mapped_column()
+    employee_id: Mapped[int] = mapped_column(ForeignKey("employee.id"), nullable=False)
 
     favorite: Mapped[list[Favorite]] = relationship(back_populates='post')
     post_tags: Mapped[list[PostTag]] = relationship(back_populates='post')
+    author: Mapped[Employee] = relationship(back_populates='post')
     pass

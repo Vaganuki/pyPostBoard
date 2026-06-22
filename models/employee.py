@@ -1,8 +1,9 @@
-from sqlalchemy import Date
+from sqlalchemy import Date, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
 from .favorite import Favorite
+from .post import Post
 
 
 class Employee(Base):
@@ -18,5 +19,5 @@ class Employee(Base):
     phone_number: Mapped[str] = mapped_column()
 
     favorites: Mapped[list[Favorite]] = relationship(back_populates='employee')
-
+    post: Mapped[list[Post]] = relationship(back_populates='author')
     pass
