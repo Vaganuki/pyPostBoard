@@ -12,4 +12,4 @@ load_dotenv()
 
 url = os.getenv("DATABASE_URL")
 engine = create_engine(url = url)
-Session = sessionmaker(bind=engine)
+session = sessionmaker(bind=engine)
