@@ -1,8 +1,11 @@
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from typing import TYPE_CHECKING
 
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .base import Base
-from .comment_reaction import CommentReaction
-from .post_reaction import PostReaction
+
+if TYPE_CHECKING:
+    from .comment_reaction import CommentReaction
+    from .post_reaction import PostReaction
 
 
 class Reaction(Base):

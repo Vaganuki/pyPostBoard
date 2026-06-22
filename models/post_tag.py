@@ -1,9 +1,12 @@
+from typing import TYPE_CHECKING
+
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import relationship, Mapped, mapped_column
+from .base import Base
 
-from models.base import Base
-from models.post import Post
-from models.tag import Tag
+if TYPE_CHECKING:
+    from .post import Post
+    from .tag import Tag
 
 
 class PostTag(Base):
@@ -12,6 +15,6 @@ class PostTag(Base):
     post_id: Mapped[int] = mapped_column(ForeignKey('post.id'), primary_key=True)
     tag_id: Mapped[int] = mapped_column(ForeignKey('tag.id'), primary_key=True)
 
-    post : Mapped[Post] = relationship(backpopulate='post_tags')
-    tag: Mapped[Tag] = relationship(backpopulate='post_tags')
+    post : Mapped[Post] = relationship(back_populates='post_tags')
+    tag: Mapped[Tag] = relationship(back_populates='post_tags')
     pass

@@ -1,12 +1,15 @@
+from typing import TYPE_CHECKING
+
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-
 from .base import Base
-from .comment import Comment
-from .employee import Employee
-from .favorite import Favorite
-from .post_reaction import PostReaction
-from .post_tag import PostTag
+
+if TYPE_CHECKING:
+    from .comment import Comment
+    from .employee import Employee
+    from .favorite import Favorite
+    from .post_reaction import PostReaction
+    from .post_tag import PostTag
 
 
 class Post(Base):
