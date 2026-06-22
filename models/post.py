@@ -5,6 +5,7 @@ from .base import Base
 from .comment import Comment
 from .employee import Employee
 from .favorite import Favorite
+from .post_reaction import PostReaction
 from .post_tag import PostTag
 
 
@@ -20,4 +21,5 @@ class Post(Base):
     post_tags: Mapped[list[PostTag]] = relationship(back_populates='post')
     author: Mapped[Employee] = relationship(back_populates='post')
     comments: Mapped[list[Comment]] = relationship(back_populates='post')
+    post_reaction: Mapped[list[PostReaction]] = relationship(back_populates="post")
     pass

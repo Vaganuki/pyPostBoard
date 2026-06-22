@@ -2,6 +2,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from .base import Base
+from .comment_reaction import CommentReaction
 from .employee import Employee
 from .post import Post
 
@@ -15,4 +16,5 @@ class Comment(Base):
 
     author: Mapped[Employee] = relationship(back_populates="comments")
     post: Mapped[Post] = relationship(back_populates="comments")
+    comment_reaction: Mapped[list[CommentReaction]] = relationship(back_populates="comment")
     pass
