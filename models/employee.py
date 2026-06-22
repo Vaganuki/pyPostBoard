@@ -2,6 +2,7 @@ from sqlalchemy import Date, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from .base import Base
+from .comment import Comment
 from .favorite import Favorite
 from .post import Post
 from .role import Role
@@ -24,4 +25,5 @@ class Employee(Base):
     favorites: Mapped[list[Favorite]] = relationship(back_populates='employee')
     post: Mapped[list[Post]] = relationship(back_populates='author')
     role: Mapped[Role] = relationship(back_populates='employees')
+    comments: Mapped[list[Comment]] = relationship(back_populates='author')
     pass
